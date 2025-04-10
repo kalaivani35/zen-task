@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tasks</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <h1>Task Assignment</h1>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="employees.html">Employees</a>
+      <a href="tasks.html">Tasks</a>
+      <script src="js/tasks.js"></script>
+
+    </div>
+  </nav>
+
+  <section class="tasks">
+    <h2>Assign Task</h2>
+    <form onsubmit="assignTask(event)">
+      <input type="text" id="taskName" placeholder="Task Name" required />
+      <input type="text" id="assignedTo" placeholder="Assigned To" required />
+      <button type="submit">Assign</button>
+    </form>
+
+    <h3>Assigned Tasks</h3>
+    <ul id="taskList"></ul>
+  </section>
+
+  <script src="js/tasks.js"></script>
+</body>
+</html>

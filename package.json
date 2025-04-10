@@ -1,0 +1,15 @@
+{
+  "name": "zen-task-backend",
+  "version": "1.0.0",
+  "description": "Mini project backend for Zen Task using Express and JSON database",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "You",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.18.1"
+  }
+}

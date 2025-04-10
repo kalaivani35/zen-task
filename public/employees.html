@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employees</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <h1>Zen Task</h1>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="employees.html" class="active">Employees</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="reports.html">Reports</a>
+      <a href="settings.html">Settings</a>
+    </div>
+  </nav>
+
+  <!-- Employee Management -->
+  <section class="employee-section">
+    <h2>Employee Management</h2>
+
+    <!-- Add Employee Form -->
+    <div class="employee-form">
+      <h3>Add New Employee</h3>
+      <form onsubmit="addEmployee(event)">
+        <input type="text" id="empName" placeholder="Full Name" required />
+        <input type="email" id="empEmail" placeholder="Email Address" required />
+        <input type="text" id="empRole" placeholder="Role" required />
+        <button type="submit">Add Employee</button>
+      </form>
+    </div>
+
+    <!-- Employee Table -->
+    <div class="employee-table">
+      <h3>Current Employees</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody id="employeeList">
+          <tbody id="employeeList">
+            <!-- Filled by JS -->
+          </tbody>
+          
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <script src="js/employees.js"></script>
+
+
+  <script>
+    function addEmployee(e) {
+  e.preventDefault(); // Prevents form from refreshing the page
+  const name = document.getElementById("empName").value;
+  const email = document.getElementById("empEmail").value;
+  const role = document.getElementById("empRole").value;
+
+  fetch("/api/employees", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, role })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.message); // "Employee added!"
+    location.reload(); // Refresh the page (optional)
+  });
+}
+
+  </script>
+  <script>
+    window.onload = () => {
+      fetch("/api/employees")
+        .then(res => res.json())
+        .then(data => {
+          const table = document.getElementById("employeeList");
+          table.innerHTML = ""; // Clear any existing rows
+          data.forEach(emp => {
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${emp.name}</td><td>${emp.email}</td><td>${emp.role}</td>`;
+            table.appendChild(row);
+          });
+        });
+    };
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zen Task Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <img src="img/logo3.png" alt="Zen Task Logo" class="logo" />
+      <h1>Zen Task</h1>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="employees.html">Employees</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="reports.html">Reports</a>
+      <a href="settings.html">Settings</a>
+      <script src="js/dashboard.js"></script>
+
+      <button onclick="logout()">Logout</button>
+
+
+
+    </div>
+  </nav>
+
+  <section class="dashboard">
+    <center><h2>Success usually comes to those who are too busy to be looking for it.</h2></center>
+    
+    <div class="button-panel">
+      <a href="employees.html" class="dashboard-btn blue">Add Employee</a>
+      <a href="tasks.html" class="dashboard-btn orange">Assign Task</a>
+      <button class="dashboard-btn green" onclick="alert('Report downloaded!')">Generate Report</button>
+    </div>
+
+    <div class="card">
+      <p>Total Employees</p>
+      <h3 id="employeeCount">0</h3>
+    </div>
+    <div class="card">
+      <p>Ongoing Tasks</p>
+      <h3 id="ongoingTasks">0</h3>
+    </div>
+    <div class="card">
+      <p>Completed Tasks</p>
+      <h3 id="completedTasks">0</h3>
+    </div>
+    
+    </div>
+  </section>
+  <script>
+    function logout() {
+      fetch("/api/logout", { method: "POST" })
+        .then(() => location.href = "/login.html");
+    }
+  </script>
+</body>
+</html>
